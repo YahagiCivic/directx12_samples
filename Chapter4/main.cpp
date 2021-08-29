@@ -181,11 +181,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	ShowWindow(hwnd, SW_SHOW);//ウィンドウ表示
 
+	//形状変更
 	XMFLOAT3 vertices[] = {
-		{-0.4f,-0.7f,0.0f} ,//左下
-		{-0.4f,0.7f,0.0f} ,//左上
-		{0.4f,-0.7f,0.0f} ,//右下
-		{0.4f,0.7f,0.0f} ,//右上
+		{-0.7f,-0.7f,0.0f} ,//左下
+		{-0.7f,0.7f,0.0f} ,//左上
+		{0.7f,-0.7f,0.0f} ,//右下
+		{0.7f,0.7f,0.0f} ,//右上
+		{0.0f,0.9f,0.9f} ,//上
+		{0.0f,-0.9f,-0.9f} //↓
 	};
 
 	D3D12_HEAP_PROPERTIES heapprop = {};
@@ -424,9 +427,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		//画面クリア
 		
 		float r, g, b;
-		r = (float)(0xff & frame >> 16) / 255.0f;
+		r = (float)(0xff & frame >> 3) / 255.0f;
 		g = (float)(0xff & frame >>8) / 255.0f;
-		b = (float)(0xff & frame >> 0) / 255.0f;
+		b = (float)(0xff & frame >> 0) / 255.0f; //haikei
 		float clearColor[] = { r,g,b,1.0f };//黄色
 		_cmdList->ClearRenderTargetView(rtvH, clearColor, 0, nullptr);
 		++frame;
